@@ -1,5 +1,7 @@
-Blink
-=====
+IR Logger
+=========
+
+![Schema](schema.png)
 
 Install Arduino CLI
 -------------------
