@@ -11,8 +11,29 @@ void setup() {
 }
 
 void loop() {
-  if(receiver.decode(&results)) {             //  Decode the button code and put it in "results" variable
-    Serial.println(results.value, HEX);       //  Print the code as a hexadecimal value
-    receiver.resume();                        //  Continue listening for new signals
+  if (receiver.decode(&results)) {
+    Serial.print("Type: ");
+    switch (results.decode_type) {
+      case NEC:
+        Serial.print("NEC");
+        break;
+      case SONY:
+        Serial.print("SONY");
+        break;
+      case RC5:
+        Serial.print("RC5");
+        break;
+      case RC6:
+        Serial.print("RC6");
+        break;
+      default:
+        Serial.print("Unknown");
+    }
+    Serial.print(", Value: ");
+    Serial.print(results.value, HEX);
+    Serial.print(", Bits: ");
+    Serial.print(results.bits);
+    Serial.println();
+    receiver.resume();
   }
 }
